@@ -21,9 +21,6 @@ goto :payload
 set defaultFolder=%UserProfile%\Desktop\SetupEnvironments
 set seleniumFolder=C:\tests\selenium_drivers
 
-echo Setting up test environment
-::if not exist "C:\temp" mkdir C:\temp
-
 echo Creating required directories
 ::Directory will contain shared files with jenkins (tests archive, installer, junit tests result)
 if not exist "C:\tests\shared" mkdir C:\tests\shared
@@ -38,17 +35,6 @@ msiexec /i "%defaultFolder%\%pythonExe%" /qn
 echo Adding Python and Selenium to PATH
 set PATH=%PATH%;C:\Python27;%seleniumFolder%
 C:\Python27\python.exe C:\Python27\Tools\Scripts\win_add2path.py
-
-::Required to use easy_install and pip (I could have used absolute path for easy_install and pip)
-chdir C:\Python27\Scripts
-
-::PIL
-::echo Downloading PIL-1.1.7.win32-py2.7
-::easy_install %defaultFolder%\PIL-1.1.7.win32-py27.exe
-
-::pywin32
-::echo Downloading pywin32-220.win32-py2.7.exe
-::easy_install %defaultFolder%\pywin32-220.win32-py2.7.exe
 
 ::Drivers
 echo Transferring geckodriver
@@ -67,14 +53,6 @@ echo Downloading packages
 pip install selenium
 pip install behave
 pip install pyscreenshot
-
-::pip install nose
-::pip install psutil
-::pip install flask
-::pip install wget
-::pip install requests
-::pip install netifaces
-::pip install wmi
 
 echo Setup complete. Reboot will be required to have access to Python in cmd.exe. Press any key to continue.
 echo Reminder to update browsers Firefox >48, Chrome to latest version.
