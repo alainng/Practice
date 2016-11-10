@@ -39,7 +39,7 @@ echo Transferring geckodriver
 echo F|xcopy "%defaultFolder%\geckodriver.exe" "%seleniumFolder%\geckodriver.exe"
 
 echo Transferring Ie Driver
-echo F|xcopy "%defaultFolder%\IEDriverServer.exe" "%seleniumFolder%\IeDriverServer.exe"
+echo F|xcopy "%defaultFolder%\IEDriverServer.exe" "%seleniumFolder%\IEDriverServer.exe"
 
 echo Downloading Chrome Driver 2.25
 echo F|xcopy "%defaultFolder%\chromedriver.exe" "%seleniumFolder%\chromedriver.exe"
