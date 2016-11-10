@@ -1,4 +1,6 @@
 # Installation Guide
+Launch PrepareEnvironment.bat
+
 Prerequisites
 ------------
 * Install Python 2.7.12
