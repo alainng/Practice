@@ -4,7 +4,7 @@ SETLOCAL ENABLEEXTENSIONS
 :bitnessselect
 set /p bitness="Are you on on 32 or 64? (Type the number in or q to quit)"
 if %bitness% == 32 goto 32bitvars
-if %bitness% == 64 set 64bitvars
+if %bitness% == 64 goto 64bitvars
 if %bitness% == q GOTO :EOF
 if [%bitness%] == [] goto bitnessselect
 
@@ -29,7 +29,7 @@ if not exist "C:\tests\shared" mkdir C:\tests\shared
 if not exist "%seleniumFolder%" mkdir %seleniumFolder%
 
 ::Python
-echo Installing Python 2.7.12
+echo Installing %pythonExe%
 msiexec /i "%defaultFolder%\%pythonExe%" /qn
 
 echo Adding Python and Selenium to PATH
