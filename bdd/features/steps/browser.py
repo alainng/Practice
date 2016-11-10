@@ -1,12 +1,19 @@
 from behave import *
 from selenium import webdriver
 from nose.tools import assert_raises, assert_true, assert_false
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 _browser = None
 
 def open_browser(name):
     global _browser
     try:
+        if name == "Firefox":
+            _browser = webdriver.Firefox(executable_path=r"C:\tests\selenium_drivers\geckodriver.exe")
+            #If you need Firefox <=47 support: 
+            #caps=DesiredCapabilities.FIREFOX
+            #caps["marionette"]=False
+            #_browser = webdriver.Firefox(capabilities=caps)
         if name == "Chrome":
             _browser = webdriver.Chrome(executable_path=r"C:\tests\selenium_drivers\chromedriver.exe")
         if name == "Ie":
