@@ -8,7 +8,9 @@ def open_browser(name):
     global _browser
     try:
         if name == "Chrome":
-            _browser = webdriver.Chrome(executable_path="C:\\tests\\selenium_drivers\\chromedriver.exe")
+            _browser = webdriver.Chrome(executable_path=r"C:\tests\selenium_drivers\chromedriver.exe")
+        if name == "Ie":
+            _browser = webdriver.Ie(executable_path=r"C:\tests\selenium_drivers\IEDriverServer.exe")
     except Exception as e:
         print("Unexpected error: {}".format(repr(e)))
 
