@@ -1,7 +1,8 @@
 echo pip installing dependencies
-pip install selenium
-pip install behave
-pip install pyscreenshot
+pip install --upgrade selenium
+pip install --upgrade behave
+pip install --upgrade pyscreenshot
+pip install --upgrade nose
 
 echo Done pip installing
 pause
