@@ -50,8 +50,8 @@ set pythonExe=python-2.7.12.amd64.msi
 goto :payload
 
 :payload
-::usage %defaultFolder%
-set defaultFolder=%UserProfile%\Desktop\SetupEnvironments
+::Assumes bat starts inside wherever SetupEnvironment is
+set defaultFolder=%~dp0
 set seleniumFolder=C:\tests\selenium_drivers
 
 echo Creating required directories
