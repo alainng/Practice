@@ -63,4 +63,5 @@ pip install pyscreenshot
 echo Setup complete. Reboot will be required to have access to Python in cmd.exe. Press any key to continue.
 echo Reminder to update browsers Firefox >48, Chrome to latest version.
 pause
+::shutdown -r -t 0
 exit
