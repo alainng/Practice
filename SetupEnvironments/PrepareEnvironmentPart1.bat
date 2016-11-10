@@ -82,11 +82,6 @@ echo F|xcopy "%defaultFolder%\chromedriver.exe" "%seleniumFolder%\chromedriver.e
 echo Updating pip
 python -m pip install --upgrade pip
 
-echo Downloading packages
-pip install selenium
-pip install behave
-pip install pyscreenshot
-
 echo "Installing Notepad++"
 %defaultFolder%\npp.7.2.Installer.exe /S
 
