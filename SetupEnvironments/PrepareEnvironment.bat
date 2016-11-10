@@ -54,6 +54,9 @@ pip install selenium
 pip install behave
 pip install pyscreenshot
 
+echo "Installing Notepad++"
+%defaultFolder%\npp.7.2.Installer.exe /S
+
 echo Setup complete. Reboot will be required to have access to Python in cmd.exe. Press any key to continue.
 echo Reminder to update browsers Firefox >48, Chrome to latest version.
 pause
