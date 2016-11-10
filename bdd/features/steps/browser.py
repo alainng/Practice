@@ -10,7 +10,7 @@ def open_browser(name):
     try:
         if name == "Firefox":
             _browser = webdriver.Firefox(executable_path=r"C:\tests\selenium_drivers\geckodriver.exe")
-            #If you need Firefox <=47 support: 
+            ##If you need Firefox <=47 support: 
             #caps=DesiredCapabilities.FIREFOX
             #caps["marionette"]=False
             #_browser = webdriver.Firefox(capabilities=caps)
