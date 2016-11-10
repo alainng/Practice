@@ -1,7 +1,7 @@
 # Installation Guide
 Prerequisites
 ------------
-Install Python 2.7.12
+* Install Python 2.7.12
 * pip install Selenium
 * pip install behave
 
