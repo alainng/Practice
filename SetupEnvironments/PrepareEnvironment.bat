@@ -9,11 +9,11 @@ if %bitness% == q GOTO :EOF
 if [%bitness%] == [] goto bitnessselect
 
 :32bitvars
-set pythonexe=python-2.7.12.msi
+set pythonExe=python-2.7.12.msi
 goto :payload
 
 :64bitvars
-set pythonexe=python-2.7.12.amd64.msi
+set pythonExe=python-2.7.12.amd64.msi
 goto :payload
 
 :payload
@@ -33,7 +33,7 @@ if not exist "%seleniumFolder%" mkdir %seleniumFolder%
 
 ::Python
 echo Installing Python 2.7.12
-msiexec /i "%defaultFolder%\%pythonexe%" /qn
+msiexec /i "%defaultFolder%\%pythonExe%" /qn
 
 echo Adding Python and Selenium to PATH
 set PATH=%PATH%;C:\Python27;%seleniumFolder%
@@ -79,5 +79,7 @@ pip install pyscreenshot
 echo Setup complete. Reboot will be required to have access to Python in cmd.exe. Press any key to continue.
 echo Reminder to update browsers Firefox >48, Chrome to latest version.
 pause
-::shutdown -r -t 0
+
+set /p restartResult="Restart(y/n)?"
+if %restartResult% == "yes" shutdown -r -t 5
 exit
