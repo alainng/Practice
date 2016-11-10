@@ -1,5 +1,5 @@
 # Installation Guide
-Launch PrepareEnvironment.bat
+1. Launch PrepareEnvironment.bat
 
 Prerequisites
 ------------
