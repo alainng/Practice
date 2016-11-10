@@ -1,9 +1,25 @@
 @echo off
 SETLOCAL ENABLEEXTENSIONS
 
+:bitnessselect
+set /p bitness="Are you on on 32 or 64? (Type the number in or q to quit)"
+if %bitness% == 32 goto 32bitvars
+if %bitness% == 64 set 64bitvars
+if %bitness% == q GOTO :EOF
+if [%bitness%] == [] goto bitnessselect
+
+:32bitvars
+set pythonexe=python-2.7.12.msi
+goto :payload
+
+:64bitvars
+set pythonexe=python-2.7.12.amd64.msi
+goto :payload
+
+:payload
 ::usage %defaultFolder%
-SET defaultFolder=%UserProfile%\Desktop\SetupEnvironments
-SET seleniumFolder=C:\tests\selenium_drivers
+set defaultFolder=%UserProfile%\Desktop\SetupEnvironments
+set seleniumFolder=C:\tests\selenium_drivers
 
 echo Setting up test environment
 ::if not exist "C:\temp" mkdir C:\temp
@@ -17,7 +33,7 @@ if not exist "%seleniumFolder%" mkdir %seleniumFolder%
 
 ::Python
 echo Installing Python 2.7.12
-msiexec /i "%defaultFolder%\python-2.7.12.amd64.msi" /qn
+msiexec /i "%defaultFolder%\%pythonexe%" /qn
 
 echo Adding Python and Selenium to PATH
 set PATH=%PATH%;C:\Python27;%seleniumFolder%
