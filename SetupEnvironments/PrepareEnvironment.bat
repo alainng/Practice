@@ -76,6 +76,9 @@ pip install psutil
 pip install flask
 pip install wget
 pip install selenium
+pip install requests
+pip install netifaces
+pip install wmi
 
 echo Deleting temp files
 chdir C:\temp\
