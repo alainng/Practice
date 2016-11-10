@@ -2,7 +2,7 @@
 SETLOCAL ENABLEEXTENSIONS
 
 ::usage %defaultFolder%
-SET defaultFolder=%UserProfile%\Desktop\SetupEnvironments\
+SET defaultFolder=%UserProfile%\Desktop\SetupEnvironments
 SET seleniumFolder=C:\tests\selenium_drivers
 
 echo Setting up test environment
