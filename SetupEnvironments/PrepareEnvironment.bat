@@ -94,5 +94,5 @@ echo Setup complete. Reboot will be required to have access to Python in cmd.exe
 echo Reminder to update browsers Firefox >48, Chrome to latest version.
 
 set /p restartResult="Restart(y/n)?"
-if %restartResult% == "yes" shutdown -r -t 5
+if %restartResult% == "y" shutdown -r -t 5
 exit
