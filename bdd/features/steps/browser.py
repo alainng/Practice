@@ -2,6 +2,7 @@ from behave import *
 from selenium import webdriver
 from nose.tools import assert_raises, assert_true, assert_false
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from system import is_program_running
 
 _browser = None
 
@@ -40,4 +41,4 @@ def launch_browser_impl(context):
 
 @then("Chrome is open")
 def browser_is_open(context):
-    return True
+    assert_true(is_program_running("chrome.exe"), "Browser {} is not running".format("chrome.exe"))
