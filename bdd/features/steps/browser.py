@@ -7,7 +7,7 @@ import settings
 
 _browser = None
 
-def open_browser(name):
+def launch_browser(name):
     global _browser
     try:
         if name == "firefox":
@@ -20,28 +20,26 @@ def open_browser(name):
             _browser = webdriver.Chrome(executable_path=r"C:\tests\selenium_drivers\chromedriver.exe")
         if name == "ie":
             _browser = webdriver.Ie(executable_path=r"C:\tests\selenium_drivers\IEDriverServer.exe")
+        _browser.maximize_window()
+        _browser.implicitly_wait(15)
+        _browser.set_script_timeout(30)
+        _browser.set_page_load_timeout(30)
     except Exception as e:
         print("Unexpected error: {}".format(repr(e)))
 
-def visit_url(url):
+def navigate_to(url):
     try:
         _browser.get(url)
     except Exception as e:
         print("Unexpected error: {}".format(repr(e)))
         
-@given("{browser} is installed")
-def is_browser_installed_impl(context,browser):
-    open_browser(browser.lower())
-    visit_url("https://www.google.com")
-    return True
-
 @when("I launch {browser}")
 def launch_browser_impl(context,browser):
-    open_browser(browser.lower())
+    launch_browser(browser.lower())
     
 @when("I navigate to {url}")
 def navigate_to_url_impl(context,url):
-    visit_url(url)
+    navigate_to(url)
     assert_true(_browser.current_url == url,"Mismatched URLs {}".format(_browser.current_url))
 
 @then("Chrome is open")
