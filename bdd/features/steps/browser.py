@@ -20,7 +20,6 @@ def launch_browser(name):
             _browser = webdriver.Chrome(executable_path=r"C:\tests\selenium_drivers\chromedriver.exe")
         if name == "ie":
             _browser = webdriver.Ie(executable_path=r"C:\tests\selenium_drivers\IEDriverServer.exe")
-        _browser.maximize_window()
         _browser.implicitly_wait(15)
         _browser.set_script_timeout(30)
         _browser.set_page_load_timeout(30)
