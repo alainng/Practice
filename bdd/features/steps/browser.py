@@ -28,7 +28,7 @@ def visit_url(url):
         print("Unexpected error: {}".format(repr(e)))
         
 @given("Chrome is installed")
-def is_chrome_installed(context):
+def is_browser_installed_impl(context):
     open_browser("Chrome")
     visit_url("https://www.google.com")
     return True

@@ -1,5 +1,7 @@
-Feature: First test
+Feature: Environment is setup to specifications
+	Tests to validate that all the necessary components are installed
 
-    Scenario: Simple test
-        When I print hi
-        Then I should see hi
+	@setup
+    Scenario: Python is setup
+        Given Python is installed
+        Then Python can run
