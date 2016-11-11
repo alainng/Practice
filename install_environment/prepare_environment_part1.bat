@@ -85,8 +85,7 @@ echo Updating pip
 python -m pip install --upgrade pip
 
 
-cd "C:\Python27\Scripts
-echo Installing %pywin32Exe%
+cd C:\Python27\Scripts
 easy_install.exe %defaultFolder%\%pywin32Exe%
 
 echo Installing Notepad++
