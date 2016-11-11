@@ -34,7 +34,7 @@ def is_browser_installed_impl(context):
     return True
 
 @when("I launch Chrome")
-def launch_browser(context):
+def launch_browser_impl(context):
     open_browser("Chrome")
     
 
