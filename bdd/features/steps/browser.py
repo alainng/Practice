@@ -49,7 +49,7 @@ def launch_browser_impl(context,browser):
 def navigate_to_url_impl(context,url):
     navigate_to(url)
     keyword=isolate_domain(url)
-    assert_true(_browser.current_url.find[keyword],"Mismatched URLs {} cannot find {}".format(_browser.current_url,keyword))
+    assert_true(_browser.current_url.find(keyword),"Mismatched URLs {} cannot find {}".format(_browser.current_url,keyword))
 
 @then("Chrome is open")
 def browser_is_open(context):
