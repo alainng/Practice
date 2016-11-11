@@ -1,9 +1,9 @@
 
-@when("I print hi")
-def simple_print(context):
+@given("Python is installed")
+def python_is_installed_impl(context):
     print ("hi")
     
 
-@then("I should see hi")
-def simple_truth(context):
+@then("Python can run")
+def python_can_run_impl(context):
     return True
