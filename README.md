@@ -1,2 +1,4 @@
 # SeleniumPython
-Base package for Quick setup for Web Tests
+=========
+1. Setup your environment
+2. behave in \bdd
