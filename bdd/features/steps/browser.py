@@ -27,6 +27,14 @@ def launch_browser(name):
     except Exception as e:
         print("Unexpected error: {}".format(repr(e)))
 
+def isolate_domain(url):
+    words=url.split(".")
+    if words[0].find("www"):
+        result=words[1]
+    else:
+        result=words[0]
+    return result
+
 def navigate_to(url):
     try:
         _browser.get(url)
@@ -40,7 +48,8 @@ def launch_browser_impl(context,browser):
 @when("I navigate to {url}")
 def navigate_to_url_impl(context,url):
     navigate_to(url)
-    assert_true(_browser.current_url == url,"Mismatched URLs {}".format(_browser.current_url))
+    keyword=isolate_domain(url)
+    assert_true(_browser.current_url.find[keyword],"Mismatched URLs {} cannot find {}".format(_browser.current_url,keyword))
 
 @then("Chrome is open")
 def browser_is_open(context):
