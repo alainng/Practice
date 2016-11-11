@@ -9,5 +9,5 @@ def is_program_running(name):
             print("Process is not allowing us to view the CPU Usage!")
         except psutil.NoSuchProcess:
             pass
-    print("{} program doesn't exist".format(name))
+    print("{} was not found in process list".format(name))
     return False
