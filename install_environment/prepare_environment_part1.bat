@@ -84,7 +84,6 @@ echo F|xcopy "%defaultFolder%\chromedriver.exe" "%seleniumFolder%\chromedriver.e
 echo Updating pip
 python -m pip install --upgrade pip
 
-
 cd C:\Python27\Scripts
 easy_install.exe %defaultFolder%\%pywin32Exe%
 
