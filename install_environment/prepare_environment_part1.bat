@@ -43,10 +43,12 @@ if [%bitness%] == [] goto bitnessselect
 
 :32bitvars
 set pythonExe=python-2.7.12.msi
+set pywin32Exe=pywin32-220.win32-py2.7.exe
 goto :payload
 
 :64bitvars
 set pythonExe=python-2.7.12.amd64.msi
+set pywin32Exe=pywin32-220.win-amd64-py2.7.exe
 goto :payload
 
 :payload
@@ -82,7 +84,12 @@ echo F|xcopy "%defaultFolder%\chromedriver.exe" "%seleniumFolder%\chromedriver.e
 echo Updating pip
 python -m pip install --upgrade pip
 
-echo "Installing Notepad++"
+
+cd "C:\Python27\Scripts
+echo Installing %pywin32Exe%
+easy_install.exe %defaultFolder%\%pywin32Exe%
+
+echo Installing Notepad++
 %defaultFolder%\npp.7.2.Installer.exe /S
 
 echo Setup complete. Reboot will be required to have access to Python in cmd.exe. Press any key to continue.
