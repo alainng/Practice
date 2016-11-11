@@ -65,7 +65,7 @@ if not exist "%seleniumFolder%" mkdir %seleniumFolder%
 
 ::Python
 echo Installing %pythonExe%
-msiexec /i "%defaultFolder%\%pythonExe%" /qn
+msiexec /i "%defaultFolder%\%pythonExe%" /passive
 
 echo Adding Python and Selenium to PATH
 set PATH=%PATH%;C:\Python27;%seleniumFolder%
