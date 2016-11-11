@@ -39,7 +39,8 @@ def navigate_to(url):
         _browser.get(url)
     except Exception as e:
         print("Unexpected error: {}".format(repr(e)))
-        
+
+#Dynamic steps below  
 @when("I launch {browser}")
 def launch_browser_impl(context,browser):
     launch_browser(browser.lower())
@@ -53,3 +54,5 @@ def navigate_to_url_impl(context,url):
 @then("Chrome is open")
 def browser_is_open(context):
     assert_true(is_program_running("chrome.exe"), "Browser {} is not running".format("chrome.exe"))
+
+#Static steps below
