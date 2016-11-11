@@ -21,5 +21,7 @@ pip install --upgrade wmi
 pip install --upgrade psutil
 
 echo Done pip installing
-pause
+
+cleanup.bat
+
 exit
