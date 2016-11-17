@@ -4,7 +4,6 @@ from nose.tools import assert_raises, assert_true, assert_false
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from system import is_program_running
 import settings
-import subprocess
 
 _browser = None
 
@@ -33,12 +32,11 @@ def launch_browser(name):
     global _browser
     try:
         if name == "firefox":            
-            if get_firefox_version()>=48:
-                _browser = webdriver.Firefox(executable_path=r"C:\tests\selenium_drivers\geckodriver.exe")
-            else:
-                caps=DesiredCapabilities.FIREFOX
-                caps["marionette"]=False
-                _browser = webdriver.Firefox(capabilities=caps)                
+#             if get_firefox_version()>=48:
+            _browser = webdriver.Firefox(executable_path=r"C:\tests\selenium_drivers\geckodriver.exe")
+#                 caps=DesiredCapabilities.FIREFOX
+#                 caps["marionette"]=False
+#                 _browser = webdriver.Firefox(capabilities=caps)                
         if name == "chrome":
             _browser = webdriver.Chrome(executable_path=r"C:\tests\selenium_drivers\chromedriver.exe")
         if name == "ie":
