@@ -31,13 +31,13 @@ def get_firefox_version():
 def launch_browser(name):
     global _browser
     try:
-        if name == "firefox":
-            if get_firefox_version()<=47:
+        if name == "firefox":            
+            if get_firefox_version()>=48:
+                _browser = webdriver.Firefox(executable_path=r"C:\tests\selenium_drivers\geckodriver.exe")
+            else:
                 caps=DesiredCapabilities.FIREFOX
                 caps["marionette"]=False
-                _browser = webdriver.Firefox(capabilities=caps)
-            else:
-                _browser = webdriver.Firefox(executable_path=r"C:\tests\selenium_drivers\geckodriver.exe")
+                _browser = webdriver.Firefox(capabilities=caps)                
         if name == "chrome":
             _browser = webdriver.Chrome(executable_path=r"C:\tests\selenium_drivers\chromedriver.exe")
         if name == "ie":
@@ -75,8 +75,9 @@ def navigate_to_url_impl(context,url):
     keyword=isolate_domain(url)
     assert_true(_browser.current_url.find(keyword),"Mismatched URLs {} cannot find {}".format(_browser.current_url,keyword))
 
-@then("Chrome is open")
-def browser_is_open(context):
-    assert_true(is_program_running("chrome.exe"), "Browser {} is not running".format("chrome.exe"))
+@then("{} is open")
+def browser_is_open(context,browser):
+    browser_binary_name=settings.get_binary_name(browser)
+    assert_true(is_program_running(browser_binary_name), "Browser {} is not running".format(browser_binary_name))
 
 #Static steps below
