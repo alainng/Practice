@@ -1,7 +1,7 @@
 Feature: Browsers can launch
 	Validate that browsers work
 
-    @browser_chrome @wip
+    @browser_chrome
     Scenario: Launch Chrome
         When I launch Chrome
         And I navigate to http://www.google.com
@@ -16,3 +16,8 @@ Feature: Browsers can launch
     Scenario: Launch IE
         When I launch IE
         Then IE is open
+        
+    @browser_edge @wip
+    Scenario: Launch Chrome
+        When I launch Edge
+        And I navigate to http://www.google.com

@@ -72,13 +72,16 @@ set PATH=%PATH%;C:\Python27;%seleniumFolder%
 C:\Python27\python.exe C:\Python27\Tools\Scripts\win_add2path.py
 
 ::Drivers
-echo Transferring geckodriver
+echo Moving geckodriver 0.11.1
 echo F|xcopy "%defaultFolder%\geckodriver.exe" "%seleniumFolder%\geckodriver.exe"
 
-echo Transferring Ie Driver
+echo Moving Ie Driver 2.53.1
 echo F|xcopy "%defaultFolder%\IEDriverServer.exe" "%seleniumFolder%\IEDriverServer.exe"
 
-echo Downloading Chrome Driver 2.25
+echo Moving Chrome Driver 2.25
+echo F|xcopy "%defaultFolder%\chromedriver.exe" "%seleniumFolder%\chromedriver.exe"
+
+echo Moving Edge Driver 3.14393
 echo F|xcopy "%defaultFolder%\chromedriver.exe" "%seleniumFolder%\chromedriver.exe"
 
 echo Updating pip
