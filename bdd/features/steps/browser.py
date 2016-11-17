@@ -27,11 +27,15 @@ def launch_browser(name):
     except Exception as e:
         print("Unexpected error: {}".format(repr(e)))
 
-def close_browser(name):
+def close_browser():
+    #note: Firefox Geckodriver has a bug that close() doesn't close it..
+    #https://github.com/mozilla/geckodriver/issues/285
     _browser.close()
 
 
-def quit_browser(name):
+def quit_browser():
+    #note: Firefox geckodriver can quit.. but will produce error: 'NoneType' object has no attribute 'path' 
+    #This method does close FF
     _browser.quit()
     return True
 
@@ -60,6 +64,14 @@ def navigate_to_url_impl(context,url):
     navigate_to(url)
     keyword=isolate_domain(url)
     assert_true(_browser.current_url.find(keyword),"Mismatched URLs {} cannot find {}".format(_browser.current_url,keyword))
+
+@when("I close the browser")
+def close_browser_impl(context):
+    close_browser()
+
+@when("I quit the browser")
+def quit_browser_impl(context):
+    quit_browser()
 
 @then("{} is open")
 def browser_is_open(context,browser):
