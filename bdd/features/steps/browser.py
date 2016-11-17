@@ -4,6 +4,7 @@ from nose.tools import assert_raises, assert_true, assert_false
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from system import is_program_running
 import settings
+import subprocess
 
 _browser = None
 
