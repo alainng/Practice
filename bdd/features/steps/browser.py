@@ -7,32 +7,10 @@ import settings
 
 _browser = None
 
-def is_64bit():
-    try:
-        os.environ["PROGRAMFILES(X86)"]
-        bits = 64
-        return True
-    except:
-        bits = 32
-        return False
-
-def get_firefox_default_binary_location():
-    if is_64bit():
-        return 'C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe'
-    else:
-        return 'C:\\Program Files\\Mozilla Firefox\\firefox.exe'
-
-def get_firefox_version():
-    version=subprocess.check_output(get_firefox_default_binary_location()+' -v')
-    assert_false(version=='',"version is empty {}".format(version))
-    print('firefox version{}'.format(version[16:18]))
-    return int(version[16:18])
-
 def launch_browser(name):
     global _browser
     try:
         if name == "firefox":            
-#             if get_firefox_version()>=48:
             _browser = webdriver.Firefox(executable_path=r"C:\tests\selenium_drivers\geckodriver.exe")
 #                 caps=DesiredCapabilities.FIREFOX
 #                 caps["marionette"]=False
@@ -48,6 +26,15 @@ def launch_browser(name):
         _browser.set_page_load_timeout(30)
     except Exception as e:
         print("Unexpected error: {}".format(repr(e)))
+
+def close_browser(name):
+    _browser.close()
+
+
+def quit_browser(name):
+    _browser.quit()
+    return True
+
 
 def isolate_domain(url):
     words=url.split(".")
