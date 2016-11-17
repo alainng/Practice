@@ -1,6 +1,6 @@
 CHROME_BINARY="chrome.exe"
 FIREFOX_BINARY="firefox.exe"
-IE_BINARY="iexplorer.exe"
+IE_BINARY="iexplore.exe"
 EDGE_BINARY="MicrosoftEdge.exe"
 
 def get_binary_name(browser):
