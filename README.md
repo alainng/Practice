@@ -12,8 +12,9 @@ Prerequisites
 Selenium drivers
 ------------
 * Geckodriver 0.11.1
-* Cromedriver 2.25
-* EDriverServer 2.53.1
+* Chromedriver 2.25
+* IEDriverServer 2.53.1
+* EdgeDriver 3.14393
 
 Testing
 ------------
