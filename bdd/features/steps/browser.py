@@ -54,7 +54,9 @@ def navigate_to(url):
     except Exception as e:
         print("Unexpected error: {}".format(repr(e)))
 
-#Dynamic steps below  
+#Dynamic steps below
+#action: verb_impl()
+#question: is_something_impl()
 @when("I launch {browser}")
 def launch_browser_impl(context,browser):
     launch_browser(browser.lower())
@@ -74,7 +76,7 @@ def quit_browser_impl(context):
     quit_browser()
 
 @then("{} is open")
-def browser_is_open(context,browser):
+def is_browser_open_impl(context,browser):
     browser_binary_name=settings.get_binary_name(browser)
     assert_true(is_program_running(browser_binary_name), "Browser {} is not running".format(browser_binary_name))
 
