@@ -20,6 +20,9 @@ pip install --upgrade wmi
 ::process and system utilization
 pip install --upgrade psutil
 
+::process images
+pip install --upgrade Pillow
+
 echo Done pip installing
 
 cleanup.bat
