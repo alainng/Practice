@@ -5,5 +5,3 @@ def isPalindrome(inputString):
 		if inputString[i] != inputString[n-i-1]:
 			return False
 	return True
-
-print isPalindrome("T1o1T")
