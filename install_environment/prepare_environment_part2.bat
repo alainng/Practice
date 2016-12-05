@@ -8,9 +8,6 @@ pip install --upgrade selenium
 ::Screenshot actions
 pip install --upgrade pyscreenshot
 
-::Test functions (Asserts, etc)
-pip install --upgrade nose
-
 ::Headless download
 ::pip install --upgrade wget
 
