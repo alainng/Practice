@@ -4,27 +4,28 @@ Feature: Browsers can launch
     @browser @browser_chrome
     Scenario: Launch Chrome
         When I launch Chrome
-        And I navigate to http://www.google.com
         Then Chrome is open
-        When I close the browser
+        When I navigate to http://www.google.com
+        Then I find element with id lst-ib
+        #When I close the browser
     
     @browser @browser_firefox
     Scenario: Launch Firefox
         When I launch Firefox
-        And I navigate to http://www.google.com
         Then Firefox is open
+        When I navigate to http://www.google.com
         When I close the browser
     
     @browser @browser_ie  
     Scenario: Launch IE
         When I launch IE
-        And I navigate to http://www.google.com
         Then IE is open
+        Then I navigate to http://www.google.com
         When I close the browser
         
-    @browser@browser_edge @wip
-    Scenario: Launch Chrome
+    @browser @browser_edge @wip
+    Scenario: Launch Edge
         When I launch Edge
-        And I navigate to http://www.google.com
         Then Edge is open
-        When I close the browser
+        When I navigate to http://www.google.com
+        #When I close the browser
