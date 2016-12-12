@@ -1,6 +1,7 @@
 import psutil
-import pyscreenshot
+# import pyscreenshot
 import time
+
 
 def is_program_running(name):
     for proc in psutil.process_iter():
@@ -14,8 +15,8 @@ def is_program_running(name):
     print("{} was not found in process list".format(name))
     return False
 
-def screenshot_to_file(filename=None):
-    if filename is None:
-        filename="screenshot"+time.strftime("%c")+".jpg"
-    pyscreenshot.grab_to_file(filename)
+# def screenshot_to_file(filename=None):
+#     if filename is None:
+#         filename="screenshot"+time.strftime("%c")+".jpg"
+#     pyscreenshot.grab_to_file(filename)
     
