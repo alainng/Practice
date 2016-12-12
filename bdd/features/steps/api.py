@@ -1,4 +1,7 @@
 import requests
+#http://docs.python-requests.org/en/master/user/quickstart/#response-status-codes
+#https://jenisys.github.io/behave.example/tutorials/tutorial03.html
+
 
 class Request():
     def __init__(self):
