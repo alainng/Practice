@@ -9,17 +9,27 @@ class Request():
         self.payload={}
         self.http_request=None
         self.http_response=None
+        self.timeout=5
     
     def get(self,url):
         self.url=url
-        self.http_request=requests.get(url)
+        try:
+            self.http_request=requests.get(url,timeout=self.timeout,hooks=dict(response=self.print_url))
+        except requests.exceptions.RequestException as request_exception:
+            raise
         self.http_response=self.http_request.status_code
 
     def post(self,url):
         self.url=url
-        self.http_request=requests.get(url,self.payload)
+        try:
+            self.http_request=requests.get(url,self.payload,timeout=self.timeout,hooks=dict(response=self.print_url))
+        except requests.exceptions.RequestException as request_exception:
+            raise
         self.http_response=self.http_request.status_code
 
+    #hooked onto get/post
+    def _print_url(r, *args, **kwargs):
+        print(r.url)
 
 def create_request(context):
     request = getattr(context, "request", None)
@@ -48,4 +58,4 @@ def request_url_impl(context,url):
 
 @then("I print url")
 def step_impl(context):
-    print (context.request.http_request.url)
+    print ("Method:"+context.request.http_request.url)
