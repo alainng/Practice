@@ -9,7 +9,7 @@ class Request():
         self.payload={}
         self.http_request=None
         self.http_response=None
-        self.timeout=5
+        self.timeout=5 #in seconds
     
     def get(self,url):
         self.url=url
