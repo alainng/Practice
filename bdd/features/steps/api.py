@@ -33,8 +33,8 @@ def request_url_impl(context,url):
 
 @then('I expect a good response')
 def request_response_impl(context):
-    assert context.request.http_response == 200,"Wrong status code {} for url {}".format(context.request.http_response,context.request.url)
-    
+    assert context.request.http_response == 404,"Request status code: {} for url {} with exception {}".format(context.request.http_response,context.request.url,context.request.http_request.raise_for_status())
+   
 @given('url parameters')
 def step_impl(context):
     create_request(context)
