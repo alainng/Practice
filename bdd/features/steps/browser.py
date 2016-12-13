@@ -79,33 +79,33 @@ def find_element_by_xpath(xpath):
 #Dynamic steps below
 #action: verb_impl()
 #question: is_something_impl()
-@when("I launch {browser}")
+@when('I launch "{browser}"')
 def launch_browser_impl(context,browser):
     launch_browser(browser.lower())
     
-@when("I navigate to {url}")
+@when('I navigate to "{url}"')
 def navigate_to_url_impl(context,url):
     navigate_to(url)
     keyword=isolate_domain(url)
     assert _browser.current_url.find(keyword) > 0 , "Mismatched URLs {} cannot find {}".format(_browser.current_url,keyword)
 
-@when("I close the browser")
+@when('I close the browser')
 def close_browser_impl(context):
     close_browser()
 
-@when("I quit the browser")
+@when('I quit the browser')
 def quit_browser_impl(context):
     quit_browser()
 
-@then("I find element with id {input_id}")
+@then('I find element with id "{input_id}"')
 def find_element_by_id_impl(context,input_id):
     assert input_id is not None
 
-@then("I find element with xpath {input_xpath}")
+@then('I find element with xpath "{input_xpath}"')
 def find_element_by_xpath_impl(context,input_xpath):
     assert input_xpath is not None
 
-@then("{} is open")
+@then('"{}" is open')
 def is_browser_open_impl(context,browser):
     browser_binary_name=settings.get_binary_name(browser)
     assert is_program_running(browser_binary_name) is True, "Browser {} is not running".format(browser_binary_name)

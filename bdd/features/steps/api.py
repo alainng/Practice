@@ -14,7 +14,7 @@ class Request():
     def get(self,url):
         self.url=url
         try:
-            self.http_request=requests.get(url,timeout=self.timeout,hooks=dict(response=self.print_url))
+            self.http_request=requests.get(url,timeout=self.timeout,hooks=dict(response=self._print_url))
         except requests.exceptions.RequestException as request_exception:
             raise
         self.http_response=self.http_request.status_code
@@ -22,7 +22,7 @@ class Request():
     def post(self,url):
         self.url=url
         try:
-            self.http_request=requests.get(url,self.payload,timeout=self.timeout,hooks=dict(response=self.print_url))
+            self.http_request=requests.get(url,self.payload,timeout=self.timeout,hooks=dict(response=self._print_url))
         except requests.exceptions.RequestException as request_exception:
             raise
         self.http_response=self.http_request.status_code
@@ -37,6 +37,7 @@ def create_request(context):
         context.request = Request()
 
 @when('I request get {url}')
+@when('I request get "{url}"')
 def request_url_impl(context,url):
     context.request=Request()
     context.request.get(url)
@@ -50,8 +51,9 @@ def step_impl(context):
     create_request(context)
     for row in context.table:
         context.request.payload[row["key"]] = row["value"]
-
+        
 @when('I request post {url}')
+@when('I request post "{url}"')
 def request_url_impl(context,url):
     create_request(context)
     context.request.post(url)

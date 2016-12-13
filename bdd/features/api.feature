@@ -3,7 +3,7 @@ Feature: Requests are tested
 	
 	@api
     Scenario: Simple webpage request and response test
-        When I request get https://api.github.com/events
+        When I request get "https://api.github.com/events"
         Then I expect a good response
     
 #    Scenario: Get request
@@ -16,6 +16,5 @@ Feature: Requests are tested
     		| key  | value  |
     		| key1 | value1 |
     		| key2 | value2 |    		
-        When I request post https://api.github.com/events
+        When I request post "https://api.github.com/events"
         Then I expect a good response
-        Then I print url
