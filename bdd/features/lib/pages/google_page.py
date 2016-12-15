@@ -7,11 +7,11 @@ class GooglePage(BasePage):
         "searchBox": (By.ID, 'lst-ib'),
     }
 
-    def __init__(self, context):
+    def __init__(self, driver):
         BasePage.__init__(
             self,
-            context.browser,
+            driver,
             'https://www.google.ca/')
 
-    def login(self,query="ipad"):
+    def query(self,query="ipad"):
         self.find_element(*self.locator_dictionary['searchBox']).send_keys(query)
