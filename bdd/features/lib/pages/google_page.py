@@ -13,5 +13,5 @@ class GooglePage(BasePage):
             driver,
             'https://www.google.ca/')
 
-    def query(self,query="ipad"):
+    def query(self,query):
         self.find_element(*self.locator_dictionary['searchBox']).send_keys(query)
