@@ -12,6 +12,11 @@ def step_impl(context):
     googlepage.navigate()
     googlepage.query("ipad")
 
+@when('I launch home page')
+def step_impl(context):
+    homepage=HomePage(context.browser)
+    homepage.navigate()
+    homepage.click_logo()
 
 
 # def find_element_by_id_impl(context,input_id)
