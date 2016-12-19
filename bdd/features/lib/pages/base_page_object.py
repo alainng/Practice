@@ -63,6 +63,7 @@ class BasePage(object):
         print "No %s here!"%what
     
     def tear_down(self):
-        #note: Firefox geckodriver can quit.. but will produce error: 'NoneType' object has no attribute 'path' 
-        #This method does close FF
-        self.driver.quit()
+        if self.driver is not None:
+            self.driver.close()
+        if self.driver is not None:
+            self.driver.quit()

@@ -38,7 +38,7 @@ class HomePage(BasePage):
         self.find_element(*self.locator_dictionary["mainLogo"]).click()
     
     def later_reservation(self):
-        query=""
+        query="france"
         startDate=None
         startHour=None
         endDate=None
@@ -55,9 +55,6 @@ class HomePage(BasePage):
             parsed_url=self.get_parsed_current_url()    #dictionary of lists
             assert parsed_url["search_options"][0]=="later", "Missing search_options parameter: {}".format(parsed_url["search_options"][0])
             assert parsed_url["search[address]"][0]==query,"Missing search[address] parameter: {}".format(parsed_url["search[address]"][0])
-    
-    
-    
     
     def later_reservation_current_location(self):
         startDate=None
@@ -76,19 +73,21 @@ class HomePage(BasePage):
         #todo parse search address
     
     def now_reservation(self):
-        query="France"
-        hoursSelectDropdown=None
+        query="france"
         
         self.find_elements(*self.locator_dictionary["reservationNowTab"])[0].click()
         self.find_element(*self.locator_dictionary["reservationCitySearchBox"]).send_keys(query)
         self.find_element(*self.locator_dictionary["reservationNowDuration"]).click()
         self.find_element(*self.locator_dictionary["reservationNowRechercherButton"]).click()
         
-        assert self.find_element(*self.locator_dictionary["ifSearchMapElementLoaded"]) is not None, "Page never loaded after 30s"  #Wait for page to load
-        parsed_url=self.get_parsed_current_url()    #dictionary of lists
-        assert parsed_url["search_options"][0]=="immediate", "Missing search_options parameter: {}".format(parsed_url["search_options"][0])
-        assert parsed_url["search[address]"][0]==query,"Missing search[address] parameter: {}".format(parsed_url["search[address]"][0])
-        
+        if query == "":
+            assert self.find_element(*self.locator_dictionary["reservationLocationRequiredErrorMessage"]) is not None, "Error message is not displaying for empty search"
+        else:
+            assert self.find_element(*self.locator_dictionary["ifSearchMapElementLoaded"]) is not None, "Page never loaded after 30s"  #Wait for page to load
+            parsed_url=self.get_parsed_current_url()    #dictionary of lists
+            assert parsed_url["search_options"][0]=="immediate", "Missing search_options parameter: {}".format(parsed_url["search_options"][0])
+            assert parsed_url["search[address]"][0]==query,"Missing search[address] parameter: {}".format(parsed_url["search[address]"][0])
+
     def test_reservation_form(self):
         self.now_reservation()
         
