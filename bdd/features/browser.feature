@@ -1,21 +1,17 @@
-Feature: Browsers can launch
-	Validate that browsers work
+Feature: Homepage tests
+
 
     @browser @browser_chrome
-    Scenario: Home test
+    Scenario: Later reservation
         When I launch home page
-#        Then I find element with id lst-ib
+        #When I click on the company logo
+        When I reserve later
         #When I close the browser
     
-    @browser @browser_firefox
-    Scenario: Launch Firefox
-        When I launch google page
-    
-    @browser @browser_ie  
-    Scenario: Launch IE
-        Then I navigate to http://www.google.com
-        
-    @browser @browser_edge @wip
-    Scenario: Launch Edge
-        When I navigate to http://www.google.com
+    @browser @browser_chrome
+    Scenario: now reservation
+        When I launch home page
+        #When I click on the company logo
+        When I reserve now
         #When I close the browser
+    

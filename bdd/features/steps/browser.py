@@ -14,9 +14,23 @@ def step_impl(context):
 
 @when('I launch home page')
 def step_impl(context):
-    homepage=HomePage(context.browser)
-    homepage.navigate()
-    homepage.click_logo()
+    if not hasattr(context, "homepage"):
+        context.homepage=HomePage(context.browser)
+    context.homepage.navigate()
 
+@when('I click on the company logo')
+def step_impl(context):
+    context.homepage.click_logo()
 
-# def find_element_by_id_impl(context,input_id)
+@when('I test the reservation form')
+def step_impl(context):
+    context.homepage.test_reservation_form()
+
+@when('I reserve now')
+def step_impl(context):
+    context.homepage.now_reservation()
+    
+@when('I reserve later')
+def step_impl(context):
+    context.homepage.later_reservation()
+
