@@ -34,3 +34,12 @@ def step_impl(context):
 def step_impl(context):
     context.homepage.later_reservation()
 
+@when('I launch header footer page')
+def step_impl(context):
+    if not hasattr(context, "headerfooterpage"):
+        context.headerfooterpage=HeaderFooterPage(context.browser)
+    context.headerfooterpage.navigate()
+    
+@when('I test all the header buttons')
+def step_impl(context):
+    context.headerfooterpage.test_header()

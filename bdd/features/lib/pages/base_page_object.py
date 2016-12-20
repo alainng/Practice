@@ -13,7 +13,6 @@ class BasePage(object):
         self.url = url
         self.timeout = 30
 
-
     def find_element(self, *loc):
         return self.driver.find_element(*loc)
     

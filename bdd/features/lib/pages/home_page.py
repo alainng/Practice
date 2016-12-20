@@ -9,12 +9,9 @@ class HomePage(BasePage):
         #compound classes need to be found by css_selector
         #http://stackoverflow.com/questions/17808521/how-to-avoid-compound-class-name-error-in-page-object
         
-        #header
-        "mainLogo": (By.CLASS_NAME, "navbar-header"),
-        
         #reservationShared
         "reservationCitySearchBox": (By.CSS_SELECTOR, ".form-control.js-search_address"), #if you choose to toggle between now and later, the info stays
-        "ifSearchMapElementLoaded": (By.CLASS_NAME, "search-map"),   
+        "ifSearchMapElementLoaded": (By.XPATH, "//div[@class='search-map']"),   
      
         #reservationNow
         "reservationNowTab": (By.XPATH,"//div[@class='searchbox__type btn-group']/label"),
@@ -34,8 +31,11 @@ class HomePage(BasePage):
             driver,
             "https://www.koolicar.com")
 
-    def click_logo(self):
-        self.find_element(*self.locator_dictionary["mainLogo"]).click()
+    def click_locator(self,locator):
+        self.find_element(*self.locator_dictionary[locator]).click()
+    
+    def send_keys_locator(self,locator,query):
+        self.find_element(*self.locator_dictionary[locator]).send_keys(query)
     
     def later_reservation(self):
         query="france"
@@ -45,9 +45,9 @@ class HomePage(BasePage):
         endHour=None
         
         self.find_elements(*self.locator_dictionary["reservationLaterTab"])[1].click()
-        self.find_element(*self.locator_dictionary["reservationCitySearchBox"]).send_keys(query)
-        self.find_element(*self.locator_dictionary["reservationLaterRechercherButton"]).click()     
-        
+        self.send_keys_locator("reservationCitySearchBox",query)
+        self.click_locator("reservationLaterRechercherButton")
+        time.sleep(2)
         if query == "":
             assert self.find_element(*self.locator_dictionary["reservationLocationRequiredErrorMessage"]) is not None, "Error message is not displaying for empty search"
         else:
@@ -63,23 +63,22 @@ class HomePage(BasePage):
         endHour=None
         
         self.find_elements(*self.locator_dictionary["reservationLaterTab"])[1].click()
-        self.find_element(*self.locator_dictionary["reservationCurrentLocationButton"]).click()
-        self.find_element(*self.locator_dictionary["reservationLaterRechercherButton"]).click()     
-        
+        self.click_locator("reservationCurrentLocationButton")
+        self.click_locator("reservationLaterRechercherButton")    
+        time.sleep(2)
         assert self.find_element(*self.locator_dictionary["ifSearchMapElementLoaded"]) is not None, "Page never loaded after 30s"  #Wait for page to load
         parsed_url=self.get_parsed_current_url()    #dictionary of lists
         assert parsed_url["search_options"][0]=="later", "Missing search_options parameter: {}".format(parsed_url["search_options"][0])
         
-        #todo parse search address
     
     def now_reservation(self):
         query="france"
         
         self.find_elements(*self.locator_dictionary["reservationNowTab"])[0].click()
-        self.find_element(*self.locator_dictionary["reservationCitySearchBox"]).send_keys(query)
-        self.find_element(*self.locator_dictionary["reservationNowDuration"]).click()
-        self.find_element(*self.locator_dictionary["reservationNowRechercherButton"]).click()
-        
+        self.send_keys_locator("reservationCitySearchBox",query)
+        self.click_locator("reservationNowDuration")
+        self.click_locator("reservationNowRechercherButton")
+        time.sleep(2)
         if query == "":
             assert self.find_element(*self.locator_dictionary["reservationLocationRequiredErrorMessage"]) is not None, "Error message is not displaying for empty search"
         else:
