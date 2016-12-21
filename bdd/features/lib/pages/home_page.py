@@ -4,6 +4,7 @@ from base_page_object import BasePage
 import time
 import re
 
+#PageObject Google example: https://github.com/SeleniumHQ/selenium/blob/master/py/test/selenium/webdriver/common/google_one_box.py
 
 class HomePage(BasePage):
     locator_dictionary = {

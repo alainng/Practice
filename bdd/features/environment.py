@@ -33,8 +33,10 @@ def before_scenario(context,scenario):
 
 
 def after_scenario(context, scenario):
-    #print("scenario status: " + scenario.status)
+
     context.logger.info("scenario status: " + scenario.status)
+    
+    #Screenshot example: http://stackoverflow.com/questions/3422262/take-a-screenshot-with-selenium-webdriver
 #     if scenario.status == "failed":
 #         if not os.path.exists("failed_scenarios_screenshots"):
 #             os.makedirs("failed_scenarios_screenshots")
