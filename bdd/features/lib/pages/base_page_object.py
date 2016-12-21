@@ -39,7 +39,7 @@ class BasePage(object):
     def match_current_url_with_regex(self,regex):
         return re.search(regex,self.driver.current_url)
 
-    def navigate(self):
+    def load(self):
         self.driver.get(self.url)
 
     def __getattr__(self, what):

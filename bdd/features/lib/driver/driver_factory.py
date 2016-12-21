@@ -3,7 +3,7 @@ from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 from selenium import webdriver
 
 class DriverFactory:
-    def getDriver(self,input_name):    
+    def create_driver(self,input_name):    
         name=input_name.lower()
         try:
             if name == "ie":

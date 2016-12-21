@@ -38,29 +38,29 @@ class HeaderFooterPage(BasePage):
             driver,
             "https://www.koolicar.com")
 
-    def click_locator(self,locator):
+    def locator_click(self,locator):
         self.find_element(*self.locator_dictionary[locator]).click()
     
     def main_logo(self):
-        self.click_locator("mainLogo")
+        self.locator_click("mainLogo")
         time.sleep(2)
         self.logger.debug("url: "+self.get_current_url())
         assert self.match_current_url_with_regex("www.koolicar.com.?$"), "invalid url {}".format(self.get_current_url())
     
     def comment_ca_marche(self):
-        self.click_locator("commentCaMarche")
+        self.locator_click("commentCaMarche")
         time.sleep(2)
         self.logger.debug("url: "+self.get_current_url())
         assert self.match_current_url_with_regex("www.koolicar.com.comment_ca_marche.?$"), "invalid url {}".format(self.get_current_url())
     
-    def test_header(self):
-        self.click_locator("mainLogo")
+    def test_can_click_all_header_buttons(self):
+        self.locator_click("mainLogo")
         time.sleep(2)
-        self.click_locator("commentCaMarche")
+        self.locator_click("commentCaMarche")
         time.sleep(2)
-        self.click_locator("tarifs")
+        self.locator_click("tarifs")
         time.sleep(2)
-        self.click_locator("seConnecter")
+        self.locator_click("seConnecter")
         time.sleep(2)
-        self.click_locator("sinscrire")
+        self.locator_click("sinscrire")
         time.sleep(2)

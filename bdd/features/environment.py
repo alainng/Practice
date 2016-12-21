@@ -25,9 +25,9 @@ def before_scenario(context,scenario):
     if 'browser' in scenario.tags:
         #isolate the browsername after "browser_" and ask for a driver with that name
         if any(tag.startswith("browser_") for tag in scenario.tags):
-            indices=[matchingIndex for matchingIndex, comparedTag in enumerate(scenario.tags) if 'browser_' in comparedTag]
-            browserName=scenario.tags[indices[0]][len("browser_"):]
-            context.browser=DriverFactory().getDriver(browserName)
+            indices=[matching_index for matching_index, compared_tag in enumerate(scenario.tags) if 'browser_' in compared_tag]
+            browser_name=scenario.tags[indices[0]][len("browser_"):]
+            context.browser=DriverFactory().create_driver(browser_name)
         else:
             raise ValueError('browser_ tag has a typo or is missing')
 

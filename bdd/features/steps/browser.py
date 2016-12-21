@@ -9,14 +9,15 @@ from features.lib.pages import *
 @when('I launch google page')
 def step_impl(context):
     googlepage=GooglePage(context.browser)
-    googlepage.navigate()
+    googlepage.load()
     googlepage.query("ipad")
 
 @when('I launch home page')
 def step_impl(context):
     if not hasattr(context, "homepage"):
         context.homepage=HomePage(context.browser)
-    context.homepage.navigate()
+    context.homepage.load()
+    assert context.homepage.is_loaded(), "Home page didn't finish loading"
 
 @when('I click on the company logo')
 def step_impl(context):
@@ -38,7 +39,7 @@ def step_impl(context):
 def step_impl(context):
     if not hasattr(context, "headerfooterpage"):
         context.headerfooterpage=HeaderFooterPage(context.browser)
-    context.headerfooterpage.navigate()
+    context.headerfooterpage.load()
     
 @when('I test all the header buttons')
 def step_impl(context):
