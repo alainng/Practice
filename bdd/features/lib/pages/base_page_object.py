@@ -22,8 +22,8 @@ class BasePage(object):
         return self.driver.find_elements(*loc)
     
     def find_element_parent(self, *loc):
-        currentElement=self.driver.find_element(*loc)        
-        return currentElement.find_element_by_xpath("..")
+        current_element=self.driver.find_element(*loc)        
+        return current_element.find_element_by_xpath("..")
 
     def get_element_text(self, *loc):
         return self.driver.find_element(*loc).text
