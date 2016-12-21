@@ -6,12 +6,14 @@ from selenium.webdriver.common.by import By
 import traceback
 import re
 from urlparse import urlparse, parse_qs
+import logging
 
 class BasePage(object):
     def __init__(self,driver,url):
         self.driver = driver
         self.url = url
         self.timeout = 30
+        self.logger=logging.getLogger("koolicar")
 
     def find_element(self, *loc):
         return self.driver.find_element(*loc)
@@ -25,6 +27,9 @@ class BasePage(object):
 
     def get_element_text(self, *loc):
         return self.driver.find_element(*loc).text
+    
+    def get_current_url(self):
+        return self.driver.current_url
     
     #returns a dict of lists
     def get_parsed_current_url(self):
@@ -62,7 +67,4 @@ class BasePage(object):
         print "No %s here!"%what
     
     def tear_down(self):
-        if self.driver is not None:
-            self.driver.close()
-        if self.driver is not None:
-            self.driver.quit()
+        self.driver.quit() #firefox will send 'NoneType' object has no attribute 'path'

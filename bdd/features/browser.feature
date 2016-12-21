@@ -17,7 +17,7 @@ Feature: Homepage tests
         When I reserve now
         #When I close the browser
     
-    @browser @browser_firefox @wip
+    @browser @browser_chrome @wip
     Scenario: header test
         When I launch header footer page
         #When I click on the company logo

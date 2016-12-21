@@ -42,4 +42,11 @@ def step_impl(context):
     
 @when('I test all the header buttons')
 def step_impl(context):
-    context.headerfooterpage.test_header()
+    #context.headerfooterpage.test_header()
+    context.headerfooterpage.main_logo()
+    context.headerfooterpage.comment_ca_marche()
+#     context.headerfooterpage.tarifs()
+#     context.headerfooterpage.se_connecter()
+#     context.headerfooterpage.sinscrire()
+#     context.headerfooterpage.proposer_ma_voiture()
+#     

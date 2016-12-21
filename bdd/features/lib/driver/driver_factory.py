@@ -10,6 +10,8 @@ class DriverFactory:
                 return webdriver.Ie(executable_path=r"C:\selenium_drivers\IEDriverServer.exe")
             elif name == "edge":
                 return webdriver.Edge(executable_path=r"C:\selenium_drivers\MicrosoftWebDriver.exe")
+            elif name == "safari":
+                return webdriver.Safari()
             elif name == "firefox":  
                 binary=FirefoxBinary(r"C:\Program Files (x86)\Mozilla Firefox\firefox.exe")
                 return webdriver.Firefox(executable_path=r"C:\selenium_drivers\geckodriver.exe",firefox_binary=binary)      
