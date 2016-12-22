@@ -1,7 +1,4 @@
 Feature: Homepage tests
-#chrome has an ssl handshake bug..tests are ~1min
-#firefox takes ~8s
-
 
     @browser @browser_firefox
     Scenario: Later reservation
