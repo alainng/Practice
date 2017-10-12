@@ -17,14 +17,6 @@ pip install --upgrade wmi
 ::process and system utilization
 pip install --upgrade psutil
 
-::process images
-pip install --upgrade Pillow
-
-::for https/ssl websites
-pip install --upgrade requests[security]
-
 echo Done pip installing
-
-cleanup.bat
 
 exit
