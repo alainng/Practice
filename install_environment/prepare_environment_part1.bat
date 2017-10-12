@@ -1,41 +1,3 @@
-:::::::::::::::::::::::::::::::::::::::::
-:: Automatically check & get admin rights
-:::::::::::::::::::::::::::::::::::::::::
-@echo off
-CLS 
-ECHO.
-ECHO =============================
-ECHO Running Admin shell
-ECHO =============================
- 
-:checkPrivileges 
-NET FILE 1>NUL 2>NUL
-if '%errorlevel%' == '0' ( goto gotPrivileges ) else ( goto getPrivileges ) 
- 
-:getPrivileges 
-if '%1'=='ELEV' (shift & goto gotPrivileges)  
-ECHO. 
-ECHO **************************************
-ECHO Invoking UAC for Privilege Escalation 
-ECHO **************************************
- 
-setlocal DisableDelayedExpansion
-set "batchPath=%~0"
-setlocal EnableDelayedExpansion
-ECHO Set UAC = CreateObject^("Shell.Application"^) > "%temp%\OEgetPrivileges.vbs" 
-ECHO UAC.ShellExecute "!batchPath!", "ELEV", "", "runas", 1 >> "%temp%\OEgetPrivileges.vbs" 
-"%temp%\OEgetPrivileges.vbs" 
-exit /B 
- 
-:gotPrivileges 
-::::::::::::::::::::::::::::
-:START
-::::::::::::::::::::::::::::
-setlocal & pushd .
-SETLOCAL ENABLEEXTENSIONS
-
-set pythonExe=python-3.6.3.exe
-
 :payload
 ::Assumes bat starts inside wherever SetupEnvironment is
 set defaultFolder=%~dp0
@@ -70,6 +32,3 @@ echo F|xcopy "%defaultFolder%\MicrosoftWebDriver.exe" "%seleniumFolder%\Microsof
 
 echo Setup complete. Reboot will be required to have access to Python in cmd.exe. Press any key to continue.
 echo Reminder to update browsers Firefox >48, Chrome to latest version.
-
-set /p restartResult="Restart(y/n)?"
-if %restartResult% == "y" shutdown -r -f -t 1

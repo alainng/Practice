@@ -17,6 +17,8 @@ pip install --upgrade wmi
 ::process and system utilization
 pip install --upgrade psutil
 
+pip install --upgrade requests
+
 echo Done pip installing
 
 exit
