@@ -34,31 +34,16 @@ exit /B
 setlocal & pushd .
 SETLOCAL ENABLEEXTENSIONS
 
-:bitnessselect
-set /p bitness="Are you on on 32 or 64? (Type the number in or q to quit)"
-if %bitness% == 32 goto 32bitvars
-if %bitness% == 64 goto 64bitvars
-if %bitness% == q GOTO :EOF
-if [%bitness%] == [] goto bitnessselect
-
-:32bitvars
-set pythonExe=python-2.7.12.msi
-set pywin32Exe=pywin32-220.win32-py2.7.exe
-goto :payload
-
-:64bitvars
-set pythonExe=python-2.7.12.amd64.msi
-set pywin32Exe=pywin32-220.win-amd64-py2.7.exe
-goto :payload
+set pythonExe=python-3.6.3.exe
 
 :payload
 ::Assumes bat starts inside wherever SetupEnvironment is
 set defaultFolder=%~dp0
-set seleniumFolder=C:\tests\selenium_drivers
+set seleniumFolder=C:\AutomationPython\selenium_drivers
 
 echo Creating required directories
 ::Directory will contain shared files with jenkins (tests archive, installer, junit tests result)
-if not exist "C:\tests\shared" mkdir C:\tests\shared
+if not exist "C:\AutomationPython\shared" mkdir C:\AutomationPython\shared
 
 ::Directory will contain Selenium Drivers
 if not exist "%seleniumFolder%" mkdir %seleniumFolder%
@@ -68,8 +53,7 @@ echo Installing %pythonExe%
 msiexec /i "%defaultFolder%\%pythonExe%" /passive
 
 echo Adding Python and Selenium to PATH
-set PATH=%PATH%;C:\Python27;%seleniumFolder%
-C:\Python27\python.exe C:\Python27\Tools\Scripts\win_add2path.py
+set PATH=%PATH%;%seleniumFolder%
 
 ::Drivers
 echo Moving geckodriver 0.11.1
@@ -82,16 +66,7 @@ echo Moving Chrome Driver 2.25
 echo F|xcopy "%defaultFolder%\chromedriver.exe" "%seleniumFolder%\chromedriver.exe"
 
 echo Moving Edge Driver 3.14393
-echo F|xcopy "%defaultFolder%\chromedriver.exe" "%seleniumFolder%\chromedriver.exe"
-
-echo Updating pip
-python -m pip install --upgrade pip
-
-cd C:\Python27\Scripts
-easy_install.exe %defaultFolder%\%pywin32Exe%
-
-echo Installing Notepad++
-%defaultFolder%\npp.7.2.Installer.exe /S
+echo F|xcopy "%defaultFolder%\MicrosoftWebDriver.exe" "%seleniumFolder%\MicrosoftWebDriver.exe"
 
 echo Setup complete. Reboot will be required to have access to Python in cmd.exe. Press any key to continue.
 echo Reminder to update browsers Firefox >48, Chrome to latest version.
